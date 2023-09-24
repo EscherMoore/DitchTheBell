@@ -2,7 +2,7 @@
 <div align="center">
   <h1 align="center">Ditch The Bell</h1>
   <a href="https://github.com/EscherMoore/DitchTheBell">
-    <img src="https://raw.githubusercontent.com/EscherMoore/DitchTheBell/main/logo.png" alt="Logo" height="700">
+    <img src="https://raw.githubusercontent.com/EscherMoore/DitchTheBell/main/logo.png" alt="Logo">
   </a>
   <p align="center">
     A desktop notifier for RSS/Atom feeds that lets you closely configure features of the <a href="https://specifications.freedesktop.org/notification-spec/latest/ar01s02.html">freedesktop notification specification</a> to unlock the most customizable feed notification experience possible on Linux.
