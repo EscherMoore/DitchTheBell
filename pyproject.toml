@@ -15,7 +15,7 @@ requires-python = ">=3.7"
 keywords = ["rss", "atom", "linux", "desktop", "notifications", "notify"]
 classifiers = [
     "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
