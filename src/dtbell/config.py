@@ -193,10 +193,10 @@ class Config:
                             break
                         else:
                             self.log.warning(
-                                    'Feed <%s> used a profile with the name '
-                                    '\'%s\' but that name isn\'t recognized '
-                                    'as a valid profile name. Using default '
-                                    'profile instead.')
+                                    "Feed <%s> used a profile with the name "
+                                    "'%s' but that name isn't recognized "
+                                    "as a valid profile name. Using default "
+                                    'profile instead.', url, string)
                             url_data = {
                                 'profile_name': 'default',
                                 'url': url
