@@ -76,7 +76,7 @@ class Feed:
                 if isinstance(new_entries, Exception):
                     continue  # Ignore feeds where errors occurred
                 all_new_entries.extend(new_entries)
-        # all_new_entries = self._handle_new_cache(all_new_entries)
+        all_new_entries = self._handle_new_cache(all_new_entries)
         all_new_entries = sorted(
             all_new_entries, key=lambda entry: entry['publish_date'])
         await self._download_thumbnails(all_new_entries)
