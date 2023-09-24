@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dtbell"
+version = "1.0.0"
+authors = [
+  { name="Escher Moore" },
+]
+description = "A highly configurable desktop notifier for RSS/Atom feeds."
+readme = "README.md"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.7"
+keywords = ["rss", "atom", "linux", "desktop", "notifications", "notify"]
+classifiers = [
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Desktop Environment",
+    "Topic :: Desktop Environment :: Window Managers",
+    "Topic :: Desktop Environment :: Window Managers :: Applets",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: News/Diary",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "aiohttp",
+    "feedparser",
+    "PyGObject",
+    "pydbus",
+    "python-dateutil",
+    "pytz",
+]
+
+[project.scripts]
+dtbell = "dtbell.app:entry_point"
+
+[project.urls]
+"Homepage" = "https://github.com/EscherMoore/DitchTheBell"
+"repository" = "https://github.com/EscherMoore/DitchTheBell"
+"Bug Tracker" = "https://github.com/EscherMoore/DitchTheBell/issues"
+"Documentation" = "https://github.com/EscherMoore/DitchTheBell/blob/main/README.md"

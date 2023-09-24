@@ -1,0 +1,6 @@
+aiohttp
+feedparser
+PyGObject
+pydbus
+python-dateutil
+pytz
