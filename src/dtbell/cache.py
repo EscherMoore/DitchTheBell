@@ -22,6 +22,19 @@ import sqlite3
 from .config import config
 
 
+def _ensure_connection(func):
+    def wrapper(self, *args, **kwargs):
+        self.db_connection = sqlite3.connect(config.USER_CACHE_PATH)
+        self.cursor = self.db_connection.cursor()
+
+        result = func(self, *args, **kwargs)
+
+        self.db_connection.commit()
+        self.db_connection.close()
+        return result
+    return wrapper
+
+
 class CacheManager:
     """
     A class implementing a cache for managing feed entries in SQLite.
@@ -32,19 +45,6 @@ class CacheManager:
         self.db_connection = None
         self.cursor = None
         self._setup()
-
-    @staticmethod
-    def _ensure_connection(func):
-        def wrapper(self, *args, **kwargs):
-            self.db_connection = sqlite3.connect(config.USER_CACHE_PATH)
-            self.cursor = self.db_connection.cursor()
-
-            result = func(self, *args, **kwargs)
-
-            self.db_connection.commit()
-            self.db_connection.close()
-            return result
-        return wrapper
 
     @_ensure_connection
     def _setup(self):
