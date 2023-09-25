@@ -26,7 +26,7 @@
 * `Python 3.7+`
 * **Optional**: Before installing, it is recommended that you install <a href="https://pygobject.readthedocs.io/en/latest/devguide/dev_environ.html?highlight=install#install-dependencies">PyGObject</a> from your distribution's package manager for <a href="https://wiki.gnome.org/Projects/GObjectIntrospection">GObject Introspection</a>. The package is typically named one of the following: `python-gi`, `python-gobject`, or `pygobject` on most distributions.
 
-Ditch The Bell is available on <a href="https://pypi.org/">PyPI</a> and can be installed via <a href="https://pip.pypa.io/en/stable/">pip</a>, the Python package manager.
+Ditch The Bell is available on <a href="https://pypi.org/project/dtbell/">PyPI</a> and can be installed via <a href="https://pip.pypa.io/en/stable/">pip</a>, the Python package manager.
 ```bash
 pip install dtbell
 ```
