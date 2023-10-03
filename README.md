@@ -15,6 +15,8 @@
 
 * A feed profile system built to separate notification behaviors for each of your different types of feeds (e.g., news, blogs, podcasts, videos, etc).
 
+* Define patterns in your profiles to filter feeds so you're only notified for the entries that are relevant to you.
+
 * Configuration options to fine-tune feed fetching behavior such as the search window, search interval, etc.
 
 <br />
