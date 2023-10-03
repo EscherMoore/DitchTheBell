@@ -82,7 +82,15 @@ class Config:
         self.USER_TMP_DIR.mkdir(parents=True, exist_ok=True)
 
     def _load_config(self):
-        config_parser = configparser.ConfigParser()
+        config_parser = configparser.ConfigParser(
+            converters={
+                'list': lambda x: [
+                    i.strip().strip('\'"') for i in x.split(',')
+                ]
+                if len(x) > 0 and x.split(',')[0].strip().strip('\'"') != ''
+                else []
+            }
+        )
 
         config_parser.read(self.USER_CONFIG_PATH)
 
@@ -124,6 +132,10 @@ class Config:
                 'default', 'entry_age', fallback=False),
             'download_thumbnails': config_parser.getboolean(
                 'default', 'download_thumbnails', fallback=True),
+            'require_patterns': config_parser.getlist(
+                'default', 'require_patterns'),
+            'exclude_patterns': config_parser.getlist(
+                'default', 'exclude_patterns'),
         }
 
         self.profiles['default'] = default_profile
@@ -163,6 +175,14 @@ class Config:
                 'timeout': config_parser.getint(
                     profile_name,
                     'timeout', fallback=default_profile['timeout']),
+                'require_patterns': config_parser.getlist(
+                    profile_name,
+                    'require_patterns',
+                    fallback=default_profile['require_patterns']),
+                'exclude_patterns': config_parser.getlist(
+                    profile_name,
+                    'exclude_patterns',
+                    fallback=default_profile['exclude_patterns']),
             }
 
             self.profiles[profile_name] = custom_profile

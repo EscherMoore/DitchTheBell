@@ -104,16 +104,18 @@ launcher_args = '--save-position-on-quit'
 
 A `[default]` profile is defined in the `config.ini` file and serves as the baseline configuration for all feeds not tagged with a custom profile. Below are the available configuration options for the `[default]` section:
 
-| Name                  | Description                                                                          | Data Type | Default Value     |
-|-----------------------|--------------------------------------------------------------------------------------|-----------|-------------------|
-| `launcher`            | Shell command to open notifications; must accept a URL as argument.                  | String    | `default_browser` |
-| `launch_args`         | Argument(s) to pass to `launcher`; e.g., '-P news' if `launcher` was set to firefox. | String    | `''`              |
-| `transience`          | Determines whether notifications are temporary and disappear after a short time.     | Boolean   | `false`           |
-| `persist_on_click`    | Keep notification after click; useful if transience is set to false.                 | Boolean   | `false`           |
-| `urgency`             | Notification urgency: 0 (low), 1 (normal), 2 (critical).                             | Integer   | `1`               |
-| `timeout`             | Timeout in ms; -1 for server default, 0 for never.                                   | Integer   | `-1`              |
-| `entry_age`           | Display entry age.                                                                   | Boolean   | `false`           |
-| `download_thumbnails` | Download thumbnails; consult your feed's TOS and be mindful of bandwidth usage.      | Boolean   | `true`            |
+| Name                  | Description                                                                              | Data Type                        | Default Value     |
+|-----------------------|------------------------------------------------------------------------------------------|----------------------------------|-------------------|
+| `launcher`            | Shell command to open notifications; must accept a URL as argument.                      | String                           | `default_browser` |
+| `launch_args`         | Argument(s) to pass to `launcher`; e.g., `'-P news'` if `launcher` was set to `firefox`. | String                           | `''`              |
+| `transience`          | Determines whether notifications are temporary and disappear after a short time.         | Boolean                          | `false`           |
+| `persist_on_click`    | Keep notification after click; useful if transience is set to false.                     | Boolean                          | `false`           |
+| `urgency`             | Notification urgency: 0 (low), 1 (normal), 2 (critical).                                 | Integer                          | `1`               |
+| `timeout`             | Timeout in ms; -1 for server default, 0 for never.                                       | Integer                          | `-1`              |
+| `entry_age`           | Display entry age.                                                                       | Boolean                          | `false`           |
+| `download_thumbnails` | Download thumbnails; consult your feed's TOS and be mindful of bandwidth usage.          | Boolean                          | `true`            |
+| `require_patterns`    | Require entries to contain at least one of these patterns; e.g., `'Open Source', Linux`  | Custom (Comma-separated values)  | `''`              |
+| `exclude_patterns`    | Exclude entries that contain any one of these patterns; e.g., `Proprietary, Windows`     | Custom (Comma-separated values)  | `''`              |
 
 You can modify the default profile directly to affect all untagged feeds, or define custom profiles like the `[video]` profile if you wish to customize settings for a select group of feeds. Omitting fields in a custom profile will cause those settings to fall back to the values defined in the default profile.
 

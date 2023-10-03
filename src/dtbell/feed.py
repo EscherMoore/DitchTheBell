@@ -115,6 +115,23 @@ class Feed:
             ):
                 profile = config.profiles.get(url_data['profile_name'], {})
 
+                require_patterns = profile.get('require_patterns')
+                if require_patterns:
+                    if not any(
+                        pattern in entry.title
+                        or pattern in entry.author
+                        for pattern in require_patterns
+                    ):
+                        continue
+                exclude_patterns = profile.get('exclude_patterns')
+                if exclude_patterns:
+                    if any(
+                        pattern in entry.title
+                        or pattern in entry.author
+                        for pattern in exclude_patterns
+                    ):
+                        continue
+
                 new_entry = {
                     'author': (
                         entry.author+' - '+self._readable_entry_age(entry_age)
