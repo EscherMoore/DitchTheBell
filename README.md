@@ -9,7 +9,7 @@
   </p>
 </div>
 
-### Features
+## Features
 
 * Configure a custom command to launch when clicking on a notification (e.g., your favorite application, shell command, custom script). The feed entry link will be passed as an argument, allowing the command to open the link directly.
 
@@ -21,7 +21,9 @@
 
 <br />
 
-### Install
+## Install
+
+##### PyPI
 
 ###### Dependencies:
 
@@ -29,13 +31,20 @@
 * **Optional**: Before installing, it is recommended that you install <a href="https://pygobject.readthedocs.io/en/latest/devguide/dev_environ.html?highlight=install#install-dependencies">PyGObject</a> from your distribution's package manager for <a href="https://wiki.gnome.org/Projects/GObjectIntrospection">GObject Introspection</a>. The package is typically named one of the following: `python-gi`, `python-gobject`, or `pygobject` on most distributions.
 
 Ditch The Bell is available on <a href="https://pypi.org/project/dtbell/">PyPI</a> and can be installed via <a href="https://pip.pypa.io/en/stable/">pip</a>, the Python package manager.
+
 ```bash
 pip install dtbell
 ```
 
+---
+
+##### Arch Linux (AUR):
+
+Ditch The Bell is available in the Arch AUR: <a href="https://aur.archlinux.org/packages/dtbell-git">dtbell-git</a>
+
 <br />
 
-### Usage
+## Usage
 
 To run, simply execute:
 
