@@ -193,35 +193,24 @@ class Config:
             for line in urls:
                 if line.startswith('http'):
                     strings = [string.strip() for string in line.split(' ')]
-                    url, url_data = strings[0], {}
-
-                    for string in strings[1:]:
-                        if string == '#' or string.startswith('#'):
-                            if not url_data:
-                                url_data = {
-                                    'profile_name': 'default',
-                                    'url': url
-                                }
-                            break
-                        elif (
-                            string in self.profiles and string != 'default'
-                        ):
+                    url = strings[0]
+                    url_data = {
+                        'profile_name': 'default',
+                        'url': url
+                    }
+                    if len(strings) > 1 and not strings[1].startswith('#'):
+                        profile = strings[1]
+                        if profile in self.profiles:
                             url_data = {
-                                'profile_name': string,
+                                'profile_name': profile,
                                 'url': url
                             }
-                            break
                         else:
                             self.log.warning(
-                                    "Feed <%s> used a profile with the name "
-                                    "'%s' but that name isn't recognized "
-                                    "as a valid profile name. Using default "
-                                    'profile instead.', url, string)
-                            url_data = {
-                                'profile_name': 'default',
-                                'url': url
-                            }
-                            break
+                                "Feed <%s> used a profile with the name "
+                                "'%s' but that name isn't recognized "
+                                "as a valid profile name. Using default "
+                                'profile instead.', url, profile)
                     self.urls.append(url_data)
             if not self.urls:
                 self.log.error('No urls found at: %s', self.USER_URLS_PATH)
