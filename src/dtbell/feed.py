@@ -101,7 +101,7 @@ class Feed:
             if any(key not in entry for key in ['title', 'link']):
                 attribute_errors += 1
                 continue
-            published = entry.get('published') or entry.get('pubDate') or entry.get('updated')
+            published = entry.get('published') or entry.get('updated')
             if not published:
                 attribute_errors += 1
                 continue
