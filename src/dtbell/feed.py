@@ -98,16 +98,16 @@ class Feed:
         entries, new_entries = parsed_feed.get('entries', []), []
         current_time = datetime.utcnow().replace(tzinfo=pytz.UTC)
         for entry in entries:
-            if any(key not in entry for key in [
-                'title', 'author', 'link']
-            ):
+            if any(key not in entry for key in ['title', 'link']):
                 attribute_errors += 1
                 continue
             published = entry.get('published') or entry.get('updated')
             if not published:
                 attribute_errors += 1
                 continue
+            entry.author = entry.get('author', "???")
             publish_date = parse(published)
+            if not publish_date.tzinfo: publish_date = publish_date.replace(tzinfo=pytz.UTC)
             entry_age = current_time - publish_date
             if (
                 entry_age < config.SEARCH_WINDOW
