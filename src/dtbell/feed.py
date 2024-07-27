@@ -48,10 +48,13 @@ class Feed:
         self.urls = urls
         self.log = logging.getLogger(__name__)
 
-    async def fetch_new(self):
+    async def fetch_new(self, filter_to_search_interval):
         """
         Fetch new entries from feeds and send notifications.
 
+        :param filter_to_search_interval: If true only send
+                                          notifications for entries
+                                          within the last search interval.
         :return: Always returns True for successful execution.
         """
 
@@ -76,7 +79,10 @@ class Feed:
                 if isinstance(new_entries, Exception):
                     continue  # Ignore feeds where errors occurred
                 all_new_entries.extend(new_entries)
-        all_new_entries = self._handle_new_cache(all_new_entries)
+        all_new_entries = self._handle_new_cache(
+            entries=all_new_entries,
+            filter_to_search_interval=filter_to_search_interval
+        )
         all_new_entries = sorted(
             all_new_entries, key=lambda entry: entry['publish_date'])
         await self._download_thumbnails(all_new_entries)
@@ -214,15 +220,14 @@ class Feed:
             thumbnail_url = favicon_path
         return thumbnail_url
 
-    def _handle_new_cache(self, entries):
+    def _handle_new_cache(self, entries, filter_to_search_interval=True):
         """
         Handles the first search with a new cache file. Caches all
-        entries found within the user-configured search window but
-        returns only those entries that are published within the
-        current search interval. This is to prevent a flood of
-        notifications.
+        entries found within the user-configured search window.
 
         :param entries: List of new feed entries to be processed.
+        :param filter_to_search_interval: If true only return entries
+                                          within the last search interval.
         :return: A filtered list of feed entries that were published
                  within the current search interval.
         """
@@ -235,7 +240,7 @@ class Feed:
 
         for entry in entries:
             entry_age = current_time - entry['publish_date']
-            if entry_age < config.SEARCH_INTERVAL:
+            if entry_age < config.SEARCH_INTERVAL or not filter_to_search_interval:
                 new_entries.append(entry)
             cache_manager.add(entry)
         config.new_cache = False

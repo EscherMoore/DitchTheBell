@@ -72,10 +72,10 @@ class DitchTheBell:
         log.info('STARTING: Ditch The Bell...')
         GLib.timeout_add_seconds(
             config.SEARCH_INTERVAL.total_seconds(),
-            lambda: asyncio.run(feed.fetch_new()) or True
+            lambda: asyncio.run(feed.fetch_new(filter_to_search_interval=True)) or True
         )
         if config.SEARCH_ON_STARTUP:
-            asyncio.run(feed.fetch_new())
+            asyncio.run(feed.fetch_new(filter_to_search_interval=False))
         self.loop.run()
 
     def _cleanup(self):
